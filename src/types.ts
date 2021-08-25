@@ -12,7 +12,7 @@ import * as api from '@opentelemetry/api';
  */
 export interface DatadogExporterConfig {
   tags?: string;
-  logger?: api.Logger;
+  logger?: api.DiagConsoleLogger;
   serviceName?: string;
   agentUrl?: string;
   version?: string;
@@ -28,7 +28,7 @@ export interface DatadogBufferConfig {
   maxTraceSize?: number;
   /** Max time for a buffer can wait before being sent */
   bufferTimeout?: number;
-  logger?: api.Logger;
+  logger?: api.DiagConsoleLogger;
 }
 
 /* eslint-disable @typescript-eslint/no-var-requires */
