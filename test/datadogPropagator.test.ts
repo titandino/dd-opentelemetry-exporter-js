@@ -10,10 +10,12 @@ import {
   defaultTextMapSetter,
   SpanContext,
   TraceFlags,
-  ROOT_CONTEXT,
-  setSpanContext,
-  getSpanContext,
+  ROOT_CONTEXT
 } from '@opentelemetry/api';
+import {
+  getSpanContext,
+  setSpanContext
+} from '@opentelemetry/api/build/esm/trace/context-utils';
 import * as assert from 'assert';
 import { TraceState } from '@opentelemetry/core';
 import { DatadogPropagator } from '../src/';

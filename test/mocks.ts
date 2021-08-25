@@ -5,7 +5,7 @@
  * Copyright 2020 Datadog, Inc.
  */
 
-import { SpanKind, StatusCode, TraceFlags } from '@opentelemetry/api';
+import { SpanKind, SpanStatusCode, TraceFlags } from '@opentelemetry/api';
 // import { ReadableSpan } from '@opentelemetry/tracing';
 import { Resource } from '@opentelemetry/resources';
 import { TraceState } from '@opentelemetry/core';
@@ -39,7 +39,7 @@ export const mockReadableSpan: any = {
   endTime: [1566156731, 709],
   ended: true,
   status: {
-    code: StatusCode.ERROR,
+    code: SpanStatusCode.ERROR,
   },
   attributes: {},
   links: [],
@@ -60,7 +60,7 @@ export const mockExandedReadableSpan: any = {
   endTime: [1566156731, 709],
   ended: true,
   status: {
-    code: StatusCode.OK,
+    code: SpanStatusCode.OK,
   },
   attributes: {
     testBool: true,
@@ -109,7 +109,7 @@ export const mockExandedReadableSpanWithResourceService: any = {
   endTime: [1566156731, 709],
   ended: true,
   status: {
-    code: StatusCode.OK,
+    code: SpanStatusCode.OK,
   },
   attributes: {
     testBool: true,

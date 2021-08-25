@@ -6,7 +6,7 @@
  */
 
 import * as assert from 'assert';
-import { StatusCode, SpanKind } from '@opentelemetry/api';
+import { SpanStatusCode, SpanKind } from '@opentelemetry/api';
 import { ReadableSpan } from '@opentelemetry/tracing';
 import { hrTimeToMilliseconds } from '@opentelemetry/core';
 import { id } from '../src/types';
@@ -146,7 +146,7 @@ describe('transform', () => {
       const spans = generateOtelSpans({
         spanContext: spanContextSampled,
         status: {
-          code: StatusCode.ERROR,
+          code: SpanStatusCode.ERROR,
           message: 'error message',
         },
         kind: SpanKind.CONSUMER,
