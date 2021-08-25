@@ -17,7 +17,7 @@ import { DatadogExportDefaults } from './defaults';
  * Format and sends span information to Datadog Exporter.
  */
 export class DatadogExporter implements SpanExporter {
-  private readonly _logger: api.Logger;
+  private readonly _logger: api.DiagConsoleLogger;
   private readonly _exporter: typeof AgentExporter;
   private _serviceName: string;
   private _env: string | undefined;
@@ -32,7 +32,7 @@ export class DatadogExporter implements SpanExporter {
       config.agentUrl ||
       process.env.DD_TRACE_AGENT_URL ||
       DatadogExportDefaults.AGENT_URL;
-    this._logger = config.logger || new api.NoopLogger();
+    this._logger = config.logger || new api.DiagConsoleLogger();
     this._serviceName =
       config.serviceName ||
       process.env.DD_SERVICE ||

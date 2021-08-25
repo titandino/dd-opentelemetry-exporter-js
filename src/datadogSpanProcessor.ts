@@ -13,9 +13,7 @@ import {
 } from '@opentelemetry/tracing';
 import {
   context,
-  Logger,
-  suppressInstrumentation,
-  NoopLogger,
+  DiagConsoleLogger
 } from '@opentelemetry/api';
 import { id, DatadogBufferConfig } from './types';
 
@@ -42,13 +40,13 @@ export class DatadogSpanProcessor implements SpanProcessor {
   private _tracesSpansStarted = new Map();
   private _tracesSpansFinished = new Map();
   private _checkTracesQueue: Set<string> = new Set();
-  public readonly logger: Logger;
+  public readonly logger: DiagConsoleLogger;
 
   constructor(
     private readonly _exporter: SpanExporter,
     config?: DatadogBufferConfig
   ) {
-    this.logger = (config && config.logger) || new NoopLogger();
+    this.logger = (config && config.logger) || new DiagConsoleLogger();
     this._bufferTimeout =
       config && typeof config.bufferTimeout === 'number'
         ? config.bufferTimeout
@@ -181,7 +179,7 @@ export class DatadogSpanProcessor implements SpanProcessor {
 
     return new Promise((resolve, reject) => {
       // prevent downstream exporter calls from generating spans
-      context.with(suppressInstrumentation(context.active()), () => {
+      context.with(context.active(), () => {
         this._checkTracesQueue.forEach(traceId => {
           // check again in case spans have been added
           if (this._isExportable(traceId)) {
