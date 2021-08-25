@@ -5,7 +5,8 @@
  * Copyright 2020 Datadog, Inc.
  */
 
-import { TraceFlags, setSpanContext, ROOT_CONTEXT } from '@opentelemetry/api';
+import { TraceFlags, ROOT_CONTEXT } from '@opentelemetry/api';
+import { setSpanContext } from '@opentelemetry/api/build/esm/trace/context-utils';
 import {
   InMemorySpanExporter,
   BasicTracerProvider,
